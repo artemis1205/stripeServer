@@ -4,6 +4,9 @@ const Gun = require('gun');
 const SEA = require("gun/sea");
 require('bullet-catcher')
 const cors = require('cors')
+const bodyParser = require('body-parser')
+const stripe = require('stripe')('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');
+
 
 const port = (process.env.PORT || 8080);
 const host = '0.0.0.0';
@@ -15,7 +18,17 @@ function hasValidToken(msg) {
 const app = express();
 app.use(Gun.serve);
 
+// ----------------------
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+
+// parse application/json
+app.use(bodyParser.json())
+
 app.use(cors())
+
+// ----------------------
 
 const server = app.listen(port, host);
 
@@ -61,9 +74,21 @@ app.get('*', function(_, res) {
 });
 
 
-app.get('/', (req, res) => res.send('Hello World!'))
 
 
+app.post('/pay', async (req, res) => {
+    const {email} = req.body;
+    
+    const paymentIntent = await stripe.paymentIntents.create({
+        amount: 5000,
+        currency: 'usd',
+        // Verify your integration in this guide by including this parameter
+        metadata: {integration_check: 'accept_a_payment'},
+        receipt_email: email,
+      });
+
+      res.json({'client_secret': paymentIntent['client_secret']})
+})
 
 
 // Most of this code provided by @thinkingjoules
