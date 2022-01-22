@@ -15,7 +15,7 @@ function hasValidToken(msg) {
 const app = express();
 app.use(Gun.serve);
 
-app.use(cors())
+
 
 const server = app.listen(port, host);
 
