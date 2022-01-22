@@ -3,6 +3,7 @@ const express = require('express');
 const Gun = require('gun');
 const SEA = require("gun/sea");
 require('bullet-catcher')
+const cors = require('cors')
 
 const port = (process.env.PORT || 8080);
 const host = '0.0.0.0';
@@ -13,6 +14,8 @@ function hasValidToken(msg) {
 
 const app = express();
 app.use(Gun.serve);
+
+app.use(cors())
 
 const server = app.listen(port, host);
 
@@ -56,6 +59,10 @@ app.use(express.static('view'));
 app.get('*', function(_, res) {
     res.sendFile(view);
 });
+
+app.get('/', (req, res) => res.send('Hello World!'))
+
+app.listen(port, () => console.log(`Example app listening on port ${port}!`))
 
 
 // Most of this code provided by @thinkingjoules
