@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/Dletta/superPeer#readme",
   "dependencies": {
+     "cors": "^2.8.5",
     "bullet-catcher": "^3.0.5",
     "express": "^4.17.1",
     "gun": "^0.2020.1235"
