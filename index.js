@@ -3,7 +3,7 @@ const express = require('express');
 const Gun = require('gun');
 const SEA = require("gun/sea");
 require('bullet-catcher')
-
+const cors = require('cors')
 
 const port = (process.env.PORT || 8080);
 const host = '0.0.0.0';
