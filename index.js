@@ -60,7 +60,6 @@ app.get('*', function(_, res) {
     res.sendFile(view);
 });
 
-app.get('/', (req, res) => res.send('Hello World!'))
 
 
 
