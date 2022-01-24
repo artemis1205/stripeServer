@@ -76,20 +76,6 @@ app.get('*', function(_, res) {
 
 
 
-app.post('/pay', async (req, res) => {
-    const {email} = req.body;
-    
-    const paymentIntent = await stripe.paymentIntents.create({
-        amount: 500,
-        currency: 'usd',
-        // Verify your integration in this guide by including this parameter
-        metadata: {integration_check: 'accept_a_payment'},
-        receipt_email: email,
-      });
-
-      res.json({'client_secret': paymentIntent['client_secret']})
-})
-
 app.post('/sub', async (req, res) => {
   const {email, payment_method} = req.body;
 
