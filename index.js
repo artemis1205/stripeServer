@@ -80,7 +80,7 @@ app.post('/pay', async (req, res) => {
     const {email} = req.body;
     
     const paymentIntent = await stripe.paymentIntents.create({
-        amount: 5000,
+        amount: 500,
         currency: 'usd',
         // Verify your integration in this guide by including this parameter
         metadata: {integration_check: 'accept_a_payment'},
