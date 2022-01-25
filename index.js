@@ -101,7 +101,7 @@ app.post('/sub', async (req, res) => {
 app.post('/cancel', async (req, res) => {
     const { sub } = req.body;
     
-    await stripe.subscriptions.del(sub);
+    const deletes = await stripe.subscriptions.del(sub);
     
     res.json({'status': 'alles klar!'});
 }
