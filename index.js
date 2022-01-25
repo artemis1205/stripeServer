@@ -5,7 +5,7 @@ const SEA = require("gun/sea");
 require('bullet-catcher')
 const cors = require('cors')
 const bodyParser = require('body-parser')
-const stripe = require('stripe')('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');
+const stripe = require('stripe')('sk_test_51KA0UmIxrCLGcFjgvXNaPk4CRvaAJ0oQQREi9yABWzGWwxyplAgQop6YyL27xhdSqLqxpImZwISbyGGZ6r456RqF00N0Zx6l6c');
 
 
 const port = (process.env.PORT || 8080);
