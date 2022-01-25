@@ -101,7 +101,7 @@ app.post('/sub', async (req, res) => {
 app.post('/cancel', async (req, res) => {
     const sub = req.body;
     
-    stripe.subscriptions.update(sub, {cancel_at_period_end: true});
+    
     
    
 }
