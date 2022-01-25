@@ -99,11 +99,11 @@ app.post('/sub', async (req, res) => {
   res.json({'client_secret': client_secret, 'status': status, 'customer': customer.id, 'sub': subscription.id});
 })
 app.post('/cancel', async (req, res) => {
-    const { sub } = req.body;
+    const sub = req.body;
     
-    const deletes = await stripe.subscriptions.del(sub);
+    stripe.subscriptions.update(sub, {cancel_at_period_end: true});
     
-    res.json({'status': 'alles klar!'});
+   
 }
 
 // Most of this code provided by @thinkingjoules
