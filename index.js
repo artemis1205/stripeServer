@@ -98,5 +98,12 @@ app.post('/sub', async (req, res) => {
 
   res.json({'client_secret': client_secret, 'status': status, 'customer': customer.id, 'sub': subscription.id});
 })
+app.post('/cancel', async (req, res) => {
+    const { sub } = req.body;
+    
+    stripe.subscriptions.del('sub_49ty4767H20z6a');
+    
+    res.json({'status': 'alles klar!'});
+}
 
 // Most of this code provided by @thinkingjoules
