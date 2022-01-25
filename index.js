@@ -98,12 +98,6 @@ app.post('/sub', async (req, res) => {
 
   res.json({'client_secret': client_secret, 'status': status, 'customer': customer.id, 'sub': subscription.id});
 })
-app.post('/cancel', async (req, res) => {
-    const sub = req.body;
-    
-    
-    
-   
-}
+
 
 // Most of this code provided by @thinkingjoules
