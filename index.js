@@ -96,7 +96,7 @@ app.post('/sub', async (req, res) => {
   const status = subscription['latest_invoice']['payment_intent']['status'] 
   const client_secret = subscription['latest_invoice']['payment_intent']['client_secret']
 
-  res.json({'client_secret': client_secret, 'status': status});
+  res.json({'client_secret': client_secret, 'status': status, 'customer': customer.id});
 })
 
 // Most of this code provided by @thinkingjoules
