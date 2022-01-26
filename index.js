@@ -112,7 +112,7 @@ app.post('/sub2', async (req, res) => {
 
   const subscription = await stripe.subscriptions.create({
     customer: customer.id,
-    items: [{ plan: 'price_1KM5UnIxrCLGcFjgUDz2WAXB' }],
+    items: [{ plan: 'price_1KM66QIxrCLGcFjgJ4zkYiLT' }],
     expand: ['latest_invoice.payment_intent']
   });
   
@@ -135,7 +135,7 @@ app.post('/sub3', async (req, res) => {
 
   const subscription = await stripe.subscriptions.create({
     customer: customer.id,
-    items: [{ plan: 'price_1KM5VYIxrCLGcFjgzhRJLjsi' }],
+    items: [{ plan: 'price_1KM66sIxrCLGcFjgPvjHr9zX' }],
     expand: ['latest_invoice.payment_intent']
   });
   
