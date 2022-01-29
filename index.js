@@ -94,7 +94,7 @@ app.post('/send_mail', async (req, res) => {
     </div>
     `
   })
- res.json({'status': "Everything Fine"]})
+ res.json({'status': "Everything Fine"})
 
 })
 
