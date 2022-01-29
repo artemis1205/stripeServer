@@ -74,7 +74,7 @@ app.get('*', function(_, res) {
 });
 
 app.post('/send_mail', async (req, res) => {
-  let { number, email } = req.body
+  const { number, email } = req.body
   const transport = nodemailer.createTransport({
     host: "smtp.mailtrap.io",
     port: 25,
@@ -94,7 +94,7 @@ app.post('/send_mail', async (req, res) => {
     </div>
     `
   })
-
+ res.json({'status': "Everything Fine"]})
 
 })
 
