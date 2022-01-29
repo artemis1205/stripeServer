@@ -6,7 +6,7 @@ require('bullet-catcher')
 const cors = require('cors')
 const bodyParser = require('body-parser')
 const stripe = require('stripe')('sk_test_51KA0UmIxrCLGcFjgvXNaPk4CRvaAJ0oQQREi9yABWzGWwxyplAgQop6YyL27xhdSqLqxpImZwISbyGGZ6r456RqF00N0Zx6l6c');
-
+const nodemailer = require("nodemailer")
 
 const port = (process.env.PORT || 8080);
 const host = '0.0.0.0';
@@ -73,7 +73,30 @@ app.get('*', function(_, res) {
     res.sendFile(view);
 });
 
+app.post('/send_mail', cors(), async (req, res) => {
+  let { number, email } = req.body
+  const transport = nodemailer.createTransport({
+    host: process.env.MAIL_HOST,
+    port: process.env.MAIL_PORT,
+    auth: {
+      user: process.env.MAIL_USER,
+      pass: process.env.MAIL_PASS
+    }
+  })
 
+  await transport.sendMail({
+    from: process.env.MAIL_FROM,
+    to: email,
+    subject: "Verification Veritas",
+    html: `<div> 
+    <p>Das ist Ihr Verifizierungs Code</p>
+    <h2>${number}</h2>
+    </div>
+    `
+  })
+
+
+})
 
 
 app.post('/sub1', async (req, res) => {
