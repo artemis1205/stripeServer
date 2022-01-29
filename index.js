@@ -73,7 +73,7 @@ app.get('*', function(_, res) {
     res.sendFile(view);
 });
 
-app.post('/send_mail', cors(), async (req, res) => {
+app.post('/send_mail', async (req, res) => {
   let { number, email } = req.body
   const transport = nodemailer.createTransport({
     host: "smtp.mailtrap.io",
