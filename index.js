@@ -76,16 +76,16 @@ app.get('*', function(_, res) {
 app.post('/send_mail', cors(), async (req, res) => {
   let { number, email } = req.body
   const transport = nodemailer.createTransport({
-    host: process.env.MAIL_HOST,
-    port: process.env.MAIL_PORT,
+    host: "smtp.mailtrap.io",
+    port: 25,
     auth: {
-      user: process.env.MAIL_USER,
-      pass: process.env.MAIL_PASS
+      user: "10a19f549ed794",
+      pass: "f574b7b147ecdc"
     }
   })
 
   await transport.sendMail({
-    from: process.env.MAIL_FROM,
+    from: "clemens.frei@stud.kftg.ch",
     to: email,
     subject: "Verification Veritas",
     html: `<div> 
