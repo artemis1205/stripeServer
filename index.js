@@ -3,6 +3,7 @@ const express = require('express');
 const Gun = require('gun');
 const SEA = require("gun/sea");
 require('bullet-catcher')
+require("dotenv").config()
 const cors = require('cors')
 const bodyParser = require('body-parser')
 const stripe = require('stripe')('sk_test_51KA0UmIxrCLGcFjgvXNaPk4CRvaAJ0oQQREi9yABWzGWwxyplAgQop6YyL27xhdSqLqxpImZwISbyGGZ6r456RqF00N0Zx6l6c');
