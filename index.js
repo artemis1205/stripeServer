@@ -73,31 +73,37 @@ app.use(express.static('view'));
 app.get('*', function(_, res) {
     res.sendFile(view);
 });
+app.post("/send_mail", cors(), async (req, res) => {
+	let { text } = req.body
+	const transport = nodemailer.createTransport({
+		host: "smtp.mailtrap.io",
+		port: 25,
+		auth: {
+			user: "10a19f549ed794",
+			pass: "f574b7b147ecdc"
+		}
+	})
 
-app.post('/send_mail', async (req, res) => {
-  const { number, email } = req.body
-  const transport = nodemailer.createTransport({
-    host: "smtp.mailtrap.io",
-    port: 25,
-    auth: {
-      user: "10a19f549ed794",
-      pass: "f574b7b147ecdc"
-    }
-  })
-
-  await transport.sendMail({
-    from: "clemens.frei@stud.kftg.ch",
-    to: email,
-    subject: "Verification Veritas",
-    html: `<div> 
-    <p>Das ist Ihr Verifizierungs Code</p>
-    <h2>${number}</h2>
-    </div>
+	await transport.sendMail({
+		from: process.env.MAIL_FROM,
+		to: "test@test.com",
+		subject: "test email",
+		html: `<div className="email" style="
+        border: 1px solid black;
+        padding: 20px;
+        font-family: sans-serif;
+        line-height: 2;
+        font-size: 20px; 
+        ">
+        <h2>Here is your email!</h2>
+        <p>${text}</p>
+    
+        <p>All the best, Darwin</p>
+         </div>
     `
-  })
- res.json({'status': "Everything Fine"})
-
+	})
 })
+
 
 
 app.post('/sub1', async (req, res) => {
