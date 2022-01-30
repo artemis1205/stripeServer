@@ -77,7 +77,7 @@ app.post("/send_mail", cors(), async (req, res) => {
 	let { text } = req.body
 	const transport = nodemailer.createTransport({
 		host: "smtp.mailtrap.io",
-		port: 25,
+		port: 2525,
 		auth: {
 			user: "10a19f549ed794",
 			pass: "f574b7b147ecdc"
