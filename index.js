@@ -18,7 +18,7 @@ function hasValidToken(msg) {
 }
 
 const app = express();
-app.use(Gun.serve);
+
 
 // ----------------------
 
