@@ -181,9 +181,9 @@ app.post('/sub3', async (req, res) => {
 app.post('/cancel', async (req, res) => {
   const { sub } = req.body;
 
-  const cancler = await stripe.subscriptions.del(sub);
 
-  res.json({ 'client_secret': cancler['client_secret'] })
+
+  res.json({ 'client_secret': 'hallo' })
 })
 
 // Most of this code provided by @thinkingjoules
