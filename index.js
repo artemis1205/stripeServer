@@ -106,6 +106,85 @@ app.post("/mail", async (req, res) => {
 })
 
 
+app.post('/sub1', async (req, res) => {
+  const { email, payment_method } = req.body;
+
+  const customer = await stripe.customers.create({
+    payment_method: payment_method,
+    email: email,
+    invoice_settings: {
+      default_payment_method: payment_method,
+    },
+  });
+
+  const subscription = await stripe.subscriptions.create({
+    customer: customer.id,
+    items: [{ plan: 'price_1KLuNhIxrCLGcFjgnEpwvgFa' }],
+    expand: ['latest_invoice.payment_intent']
+  });
+
+  const status = subscription['latest_invoice']['payment_intent']['status']
+  const client_secret = subscription['latest_invoice']['payment_intent']['client_secret']
+
+  res.json({ 'client_secret': client_secret, 'status': status, 'customer': customer.id, 'sub': subscription.id });
+})
+
+app.post('/sub2', async (req, res) => {
+  const { email, payment_method } = req.body;
+
+  const customer = await stripe.customers.create({
+    payment_method: payment_method,
+    email: email,
+    invoice_settings: {
+      default_payment_method: payment_method,
+    },
+  });
+
+  const subscription = await stripe.subscriptions.create({
+    customer: customer.id,
+    items: [{ plan: 'price_1KM66QIxrCLGcFjgJ4zkYiLT' }],
+    expand: ['latest_invoice.payment_intent']
+  });
+
+  const status = subscription['latest_invoice']['payment_intent']['status']
+  const client_secret = subscription['latest_invoice']['payment_intent']['client_secret']
+
+  res.json({ 'client_secret': client_secret, 'status': status, 'customer': customer.id, 'sub': subscription.id });
+})
+
+app.post('/sub3', async (req, res) => {
+  const { email, payment_method } = req.body;
+
+  const customer = await stripe.customers.create({
+    payment_method: payment_method,
+    email: email,
+    invoice_settings: {
+      default_payment_method: payment_method,
+    },
+  });
+
+  const subscription = await stripe.subscriptions.create({
+    customer: customer.id,
+    items: [{ plan: 'price_1KM66sIxrCLGcFjgPvjHr9zX' }],
+    expand: ['latest_invoice.payment_intent']
+  });
+
+  const status = subscription['latest_invoice']['payment_intent']['status']
+  const client_secret = subscription['latest_invoice']['payment_intent']['client_secret']
+
+  res.json({ 'client_secret': client_secret, 'status': status, 'customer': customer.id, 'sub': subscription.id });
+})
+
+app.post('/cancel', async (req, res) => {
+  const { sub } = req.body;
+
+
+
+  res.json({ 'client_secret': 'hallo' })
+})
+
+// Most of this code provided by @thinkingjoules
+
 
 // Most of this code provided by @thinkingjoules
 
