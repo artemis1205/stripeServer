@@ -2,8 +2,7 @@
 
 const path = require('path');
 const express = require('express');
-const Gun = require('gun');
-const SEA = require("gun/sea");
+
 require('bullet-catcher')
 require("dotenv").config()
 const cors = require('cors')
